@@ -19,7 +19,9 @@
 //  ]
 
 let categories = [];
-
+let questionsData = [];
+let hiddenQs = {};
+let hiddenAs = {};
 
 /** Get NUM_CATEGORIES random category from API.
  *
@@ -64,8 +66,27 @@ async function fillTable() {
  * - if curerntly "answer", ignore click
  * */
 
-function handleClick(evt) {
+
+// First click on question mark function
+function firstClick(id) {
+
+  // Reveal question
+  $(id).html(hiddenQs[`${id}`]);
+
+  // Set up second event listener
+  $(id).on('click', function () {
+    secondClick(id);
+  });
 }
+
+// Second click on box
+function secondClick(id) {
+  // Reveal Answer
+  $(id).html(hiddenAs[`${id}`]);
+}
+
+// function handleClick(evt) {
+// }
 
 /** Start game:
  *
@@ -77,11 +98,41 @@ function handleClick(evt) {
 async function setupAndStart() {
 
   // Retrieve Categories and select random sample 
-  let get = await axios.get('http://jservice.io/api/categories', { params: {'count':'100' }});
-  categories = (_.sampleSize(get.data, 5));
-  console.log(categories);
+  let get = await axios.get('http://jservice.io/api/categories', { params: { 'count': '100' } });
+  categories = (_.sampleSize(get.data, 6));
 
+  // Retrieve questions and answers and select random sample
+  for (let i = 0; i < 6; i++) {
+    let get = await axios.get('http://jservice.io/api/clues', { params: { 'category': `${categories[i].id}` } })
+    questionsData.push(_.sampleSize(get.data, 5));
+  }
 
+  // Set up category headers
+  for (let i = 0; i < 6; i++) {
+    $('#jeopardy > thead').append(`<th>${categories[i].title}</th>`)
+  }
+
+  // Set up Questions and answers and rest of table 
+  for (let i = 0; i < 5; i++) {
+    $('#jeopardy > tbody').append(`<tr class="tr${i}"></tr>`);
+    for (let j = 0; j < 6; j++) {
+      // $(`.tr${i}`).append(`<td style="display: none;" id="${[j]}-${[i]}">${questionsData[j][i].question}</td>`)
+      $(`.tr${i}`).append(`<td class="clue" id="${[j]}-${[i]}">?</td>`)
+
+      // Event listener on box
+      $(`#${[j]}-${[i]}`).on('click', function () {
+        firstClick(`#${[j]}-${[i]}`);
+      })
+
+      // Store questions and answers 
+      hiddenQs[`#${[j]}-${[i]}`] = questionsData[j][i].question
+      hiddenAs[`#${[j]}-${[i]}`] = questionsData[j][i].answer
+    }
+  }
+
+  // Hide spinner, show restart button
+  $('#spinner').hide();
+  $('#restart').show();
 }
 
 /** On click of restart button, restart game. */
@@ -92,8 +143,29 @@ async function setupAndStart() {
 
 // TODO
 
-$(function() {
-  $('#restart').on('click', function() {
+$(function () {
+
+  // On load, show spinner and load initial table 
+  $('#spinner').show();
+  setupAndStart();
+
+  // Restart button event listener
+  $('#restart').on('click', function (e) {
+    e.preventDefault();
+
+    // Clear current table and variables
+    $('#jeopardy > thead').html('');
+    $('#jeopardy > tbody').html('');
+    categories = [];
+    questionsData = [];
+    hiddenQs = {};
+    hiddenAs = {};
+
+    // Show spinner, hide restart button
+    $('#restart').hide();
+    $('#spinner').show();
+ 
+    // Run board setup
     setupAndStart();
   });
 });

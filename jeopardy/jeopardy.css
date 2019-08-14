@@ -4,6 +4,8 @@
   background-color: #060ce9;
   color: white;
   border-collapse: collapse;
+  align-self: center;
+  position: relative;
 }
 
 #jeopardy th, #jeopardy td {
@@ -27,4 +29,40 @@ td {
 
 td:hover {
   cursor: pointer;
+  background-color: rgb(19, 19, 252);
+}
+
+#spinner {
+  font-size: 50px;
+  max-width: 50%;
+}
+
+div#tablewrap {
+  position: relative;
+}
+div#aligned {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
+}
+
+#restart {
+  position: absolute;
+  display: none;
+  background-color: rgb(71, 71, 71);
+  border: 2px solid white;
+  color: white;
+  text-align: center;
+  border-radius: 50%;
+  padding: 13px;
+  cursor: pointer;
+  z-index: 2000;
+  top: -50px;
+  right: 0px;
+  opacity: 1;
+}
+#restart:hover {
+  background-color: rgb(112, 112, 112)
 }
