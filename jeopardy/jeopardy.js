@@ -103,21 +103,20 @@ async function setupAndStart() {
 
   // Retrieve questions and answers and select random sample
   for (let i = 0; i < 6; i++) {
-    let get = await axios.get('http://jservice.io/api/clues', { params: { 'category': `${categories[i].id}` } })
+    let get = await axios.get('http://jservice.io/api/clues', { params: { 'category': `${categories[i].id}` } });
     questionsData.push(_.sampleSize(get.data, 5));
   }
 
   // Set up category headers
   for (let i = 0; i < 6; i++) {
-    $('#jeopardy > thead').append(`<th>${categories[i].title}</th>`)
+    $('#jeopardy > thead').append(`<th>${categories[i].title}</th>`);
   }
 
   // Set up Questions and answers and rest of table 
   for (let i = 0; i < 5; i++) {
     $('#jeopardy > tbody').append(`<tr class="tr${i}"></tr>`);
     for (let j = 0; j < 6; j++) {
-      // $(`.tr${i}`).append(`<td style="display: none;" id="${[j]}-${[i]}">${questionsData[j][i].question}</td>`)
-      $(`.tr${i}`).append(`<td class="clue" id="${[j]}-${[i]}">?</td>`)
+      $(`.tr${i}`).append(`<td class="clue" id="${[j]}-${[i]}">?</td>`);
 
       // Event listener on box
       $(`#${[j]}-${[i]}`).on('click', function () {
@@ -125,14 +124,15 @@ async function setupAndStart() {
       })
 
       // Store questions and answers 
-      hiddenQs[`#${[j]}-${[i]}`] = questionsData[j][i].question
-      hiddenAs[`#${[j]}-${[i]}`] = questionsData[j][i].answer
+      hiddenQs[`#${[j]}-${[i]}`] = questionsData[j][i].question;
+      hiddenAs[`#${[j]}-${[i]}`] = questionsData[j][i].answer;
     }
   }
 
   // Hide spinner, show restart button
   $('#spinner').hide();
   $('#restart').show();
+  $('#restart').attr('title', 'Restart game');
 }
 
 /** On click of restart button, restart game. */

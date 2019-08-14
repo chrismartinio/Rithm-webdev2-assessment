@@ -32,11 +32,13 @@ td:hover {
   background-color: rgb(19, 19, 252);
 }
 
+/* little spinnah */
 #spinner {
   font-size: 50px;
   max-width: 50%;
 }
 
+/* Neaten up the table, align to viewport */
 div#tablewrap {
   position: relative;
 }
@@ -48,6 +50,7 @@ div#aligned {
   position: relative;
 }
 
+/* Restart button*/
 #restart {
   position: absolute;
   display: none;

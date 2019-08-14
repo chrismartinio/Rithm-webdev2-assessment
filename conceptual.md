@@ -35,11 +35,11 @@ Check out the [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wik
 
 ### What is event delegation? Why would you use it?
 
-* event delegation is used within event listeners to provide increased specificity for the given event. (e.g. )
+* event delegation is used within event listeners to provide increased specificity for the given event. (e.g. selecting body but then specifying a 'div' within that body to narrow down the scope of the event listener)
 
 ### What is the `event` object? What kinds of things are in it?
 
-* event object is returned on an anonymous function after a user-driven event such as 'click' or 'mouseover'. It contains things such as:
+* an event object is returned on an anonymous function after a user-driven event such as 'click' or 'mouseover'. It contains things such as:
   * currentTarget info 
   * firstChild inside currentTarget
   * innerHTML inside currentTarget
@@ -73,7 +73,7 @@ Check out the [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wik
 ### What are some strategies you've learned for being organized in larger projects, like Hack or Snooze?
 
 * When working in pairs, staying communicative and open-minded is paramount.
-* Working off of one iteration of code at a time is very important.
+* Working off of one iteration of code at a time is also very important.
 * Separating API calls from local JS behavior makes it easier to keep code organized.
 
 
@@ -123,7 +123,10 @@ Check out the [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wik
 
 ### What are some limitations of AJAX requests?
 
-
+* Since data is loaded asynchronously, some parts of a page may appear at different times, or response times may be slower than expected
+* 'back' and 'forward' functions on the browser don't work
+* Older browsers may not work
+* Search engines can't index AJAX-loaded data
 
 ### What is the Same Origin Policy?
 
