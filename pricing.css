@@ -1,0 +1,62 @@
+#sidebar {
+  max-width: 250px;
+  text-align: center;
+  display: flex;
+  align-items: stretch;
+
+}
+#sidebar > ul {
+  list-style: none;
+  align-items: stretch;
+}
+#sidebar > li {
+}
+.container {
+  align-items: center;
+  display: flex;
+}
+body {
+  padding: 0 20px 20px 20px;
+  text-align: center;
+  z-index: 500;
+  overflow: hidden;
+}
+p {
+  color: black;
+  margin: 0;
+}
+h2 {
+  color: black;
+}
+span.subheader {
+  color: black;
+  font-size: 12px;
+}
+span.lightblue {
+  background-color: lightblue!important;
+}
+
+/* Ribbon */
+
+.ribbon {
+  width: 120px;
+  height: 20px;
+  background-color: green;
+  position: absolute;
+  top: 22px;
+  right: -10px;
+  text-align: center;
+  color: #ffffff;
+  transform: rotate(45deg);
+  z-index: 200;
+  font-size: 8px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* div.white-container {
+  background-color: #fbfeda;
+  z-index: 300;
+} */

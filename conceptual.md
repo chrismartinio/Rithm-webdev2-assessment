@@ -39,23 +39,43 @@ Check out the [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wik
 
 ### What is the `event` object? What kinds of things are in it?
 
+* event object is returned on an anonymous function after a user-driven event such as 'click' or 'mouseover'. It contains things such as:
+  * currentTarget info 
+  * firstChild inside currentTarget
+  * innerHTML inside currentTarget
+  * delegateTarget
+  * type (e.g. 'click')
+  * target info
+  * timestamp
+  * data
+  * is default prevented
+
 ### In the Hack or Snooze API project, what did we use async/await for?
 
 * to receive and post data to the API
 
 ### What happens if you forget the `async` keyword on  the declaration of a function that uses `await` inside of it?
 
-* In the place of API data a promise is returned 
+* syntax error is generated: 'await is only valid in async functions and async generators.'
 
 ### What happens if you forget the `await` keyword in front of an asynchronous expression?
 
+* a promise returned since the expression is not given the time to receive the data requested
+
 ### What is the difference between a static method and an instance method?
+
+* A static method doesn't use any instance data and can be directly called. An instance method is usually used after an instance is created and then the instance method is called for the new instance.
 
 ### In JS: `let a = [1, 2, 3]; b = a.slice(); a.push(4);`: does `b` contain 4? Why or why not? 
 
 * b does not contain 4. It does not because slice() returns a new array and does not modify a itself. Therefore b is not referenced to a, so when you modify a, b remains the same. 
 
 ### What are some strategies you've learned for being organized in larger projects, like Hack or Snooze?
+
+* When working in pairs, staying communicative and open-minded is paramount.
+* Working off of one iteration of code at a time is very important.
+* Separating API calls from local JS behavior makes it easier to keep code organized.
+
 
 ---
 
@@ -103,4 +123,8 @@ Check out the [Markdown Cheat Sheet](https://github.com/adam-p/markdown-here/wik
 
 ### What are some limitations of AJAX requests?
 
+
+
 ### What is the Same Origin Policy?
+
+* Same Origin Policy determines whether scripts will be loaded depending on whether the scripts are loaded from the same source, port, and protocol.

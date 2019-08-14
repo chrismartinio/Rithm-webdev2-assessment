@@ -27,6 +27,7 @@ let categories = [];
  */
 
 function getCategoryIds() {
+
 }
 
 /** Return object with data about a category:
@@ -74,6 +75,13 @@ function handleClick(evt) {
  * */
 
 async function setupAndStart() {
+
+  // Retrieve Categories and select random sample 
+  let get = await axios.get('http://jservice.io/api/categories', { params: {'count':'100' }});
+  categories = (_.sampleSize(get.data, 5));
+  console.log(categories);
+
+
 }
 
 /** On click of restart button, restart game. */
@@ -83,3 +91,9 @@ async function setupAndStart() {
 /** On page load, setup and start & add event handler for clicking clues */
 
 // TODO
+
+$(function() {
+  $('#restart').on('click', function() {
+    setupAndStart();
+  });
+});
